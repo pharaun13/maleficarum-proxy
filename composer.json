@@ -12,7 +12,8 @@
         "maleficarum/profiler": "^1.0",
         "maleficarum/request": "^1.0",
         "maleficarum/response": "^1.0",
-        "maleficarum/handler": "^1.0"
+        "maleficarum/handler": "^1.0",
+        "monolog/monolog": "^1.21"
     },
     "autoload": {
         "psr-4": {

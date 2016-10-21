@@ -1,6 +1,11 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
+## [1.1.0] - 2016-10-21
+### Added
+- Added monolog logger
+- Added trait for logger
+
 ## [1.0.1] - 2016-10-18
 ### Fixed
 - Remove unnecessary rabbitmq dependant trait from generic controller

@@ -47,6 +47,13 @@ abstract class Generic
     use \Maleficarum\Response\Dependant;
 
     /**
+     * Use \Maleficarum\Proxy\Logger\Dependant functionality.
+     *
+     * @trait
+     */
+    use \Maleficarum\Proxy\Logger\Dependant;
+
+    /**
      * Perform URL to class method remapping.
      *
      * @param string $method
