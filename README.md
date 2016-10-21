@@ -1,6 +1,10 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
+## [1.1.1] - 2016-10-21
+### Fixed
+- Added logger setup
+
 ## [1.1.0] - 2016-10-21
 ### Added
 - Added monolog logger

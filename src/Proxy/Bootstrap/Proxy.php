@@ -42,6 +42,13 @@ class Proxy
      */
     private $response = null;
 
+    /**
+     * Internal storage for logger object
+     *
+     * @var \Psr\Log\LoggerInterface|null
+     */
+    private $logger = null;
+
     /* ------------------------------------ Proxy methods START ---------------------------------------- */
     /**
      * Perform full proxy init.
@@ -60,6 +67,7 @@ class Proxy
             ->setUpConfig()
             ->setUpRequest()
             ->setUpResponse()
+            ->setUpLogger()
             ->setUpRoutes($app, $routesPath);
     }
 
@@ -87,6 +95,20 @@ class Proxy
     private function setUpErrorHandling() {
         \set_exception_handler([\Maleficarum\Ioc\Container::get('Maleficarum\Handler\ExceptionHandler'), 'handle']);
         \set_error_handler([\Maleficarum\Ioc\Container::get('Maleficarum\Handler\ErrorHandler'), 'handle']);
+
+        return $this;
+    }
+
+    /**
+     * Bootstrap step method - set up logger object.
+     *
+     * @return \Maleficarum\Proxy\Bootstrap\Proxy
+     */
+    private function setUpLogger() {
+        $this->logger = \Maleficarum\Ioc\Container::get('Monolog\Logger');
+        \Maleficarum\Ioc\Container::registerDependency('Maleficarum\Logger', $this->logger);
+
+        !is_null($this->timeProfiler) && $this->timeProfiler->addMilestone('logger_init', 'Logger initialized.');
 
         return $this;
     }
