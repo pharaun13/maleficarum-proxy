@@ -2,25 +2,27 @@
     "name": "maleficarum/proxy",
     "description": "Proxy component",
     "require": {
-        "php": ">=5.6",
-        "ext-json": "*",
+        "php": ">=7.0",
         "ext-mbstring": "*",
         "ext-phalcon": ">=3.0",
-        "maleficarum/ioc": "^1.0",
-        "maleficarum/environment": "^1.0",
-        "maleficarum/config": "^1.0",
-        "maleficarum/profiler": "^1.0",
-        "maleficarum/request": "^1.0",
-        "maleficarum/response": "^1.0",
-        "maleficarum/handler": "^1.0",
-        "monolog/monolog": "^1.21"
+        "maleficarum/ioc": "^2.0",
+        "maleficarum/environment": "^3.0",
+        "maleficarum/config": "^3.0",
+        "maleficarum/request": "^3.0",
+        "maleficarum/http-response": "^4.0",
+        "maleficarum/handler": "^3.1",
+        "twig/twig": "^2.4"
     },
     "autoload": {
         "psr-4": {
-            "Maleficarum\\Proxy\\": "src/Proxy/"
+            "Maleficarum\\Proxy\\": "src/"
         }
     },
     "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:pharaun13/maleficarum-handler.git"
+        },
         {
             "type": "vcs",
             "url": "git@github.com:pharaun13/maleficarum-ioc.git"
@@ -35,10 +37,6 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:pharaun13/maleficarum-profiler.git"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:pharaun13/maleficarum-request.git"
         },
         {
@@ -47,7 +45,7 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:pharaun13/maleficarum-handler.git"
+            "url": "git@github.com:pharaun13/maleficarum-http-response.git"
         }
     ]
 }
