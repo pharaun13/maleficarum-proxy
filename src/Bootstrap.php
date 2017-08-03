@@ -7,10 +7,10 @@ declare (strict_types=1);
 /**
  * This class manages all bootstrap operations for the application.
  */
+
 namespace Maleficarum\Proxy;
 
 class Bootstrap {
-
     /* ------------------------------------ Class Constant START --------------------------------------- */
 
     const INITIALIZER_ERRORS = ['Maleficarum\Proxy\Basic\Initializer', 'setUpErrorHandling'];
@@ -43,18 +43,21 @@ class Bootstrap {
      * Run all defined bootstrap initializers.
      * @return Bootstrap
      */
-    public function initialize() : \Maleficarum\Proxy\Bootstrap {
+    public function initialize(): \Maleficarum\Proxy\Bootstrap {
         // register bootstrap as dependency for use in initializer steps
         \Maleficarum\Ioc\Container::registerDependency('Maleficarum\Bootstrap', $this);
 
         // validate and execute initializers
         foreach ($this->getInitializers() as $key => $initializer) {
-            if (!is_callable($initializer)) throw new \LogicException(sprintf('Invalid initializer passed to the bootstrap initialization process. \%s::\%s()', static::class, __METHOD__));
+            if (!is_callable($initializer)) {
+                throw new \LogicException(sprintf('Invalid initializer passed to the bootstrap initialization process. \%s::\%s()', static::class, __METHOD__));
+            }
             $init_name = $initializer($this->getParamContainer());
 
             try {
-                \Maleficarum\Ioc\Container::getDependency('Maleficarum\Profiler\Time')->addMilestone('initializer_'.$key, 'Initializer executed ('.$init_name.').');
-            } catch (\RuntimeException $e) {}
+                \Maleficarum\Ioc\Container::getDependency('Maleficarum\Profiler\Time')->addMilestone('initializer_' . $key, 'Initializer executed (' . $init_name . ').');
+            } catch (\RuntimeException $e) {
+            }
         }
 
         return $this;
@@ -65,16 +68,18 @@ class Bootstrap {
      *
      * @return \Maleficarum\Proxy\Bootstrap
      */
-    public function conclude() : \Maleficarum\Proxy\Bootstrap {
+    public function conclude(): \Maleficarum\Proxy\Bootstrap {
         // complete profiling
         try {
             \Maleficarum\Ioc\Container::getDependency('Maleficarum\Profiler\Time')->end();
-        } catch (\RuntimeException $e) {}
+        } catch (\RuntimeException $e) {
+        }
 
         // output any response data
         try {
             \Maleficarum\Ioc\Container::getDependency('Maleficarum\Response')->output();
-        } catch (\RuntimeException $e) {}
+        } catch (\RuntimeException $e) {
+        }
 
         return $this;
     }
@@ -84,32 +89,36 @@ class Bootstrap {
     /**
      * @return array
      */
-    protected function getInitializers() : array {
+    protected function getInitializers(): array {
         return $this->initializers;
     }
 
     /**
      * @param array $initializers
+     *
      * @return \Maleficarum\Proxy\Bootstrap
      */
-    public function setInitializers(array $initializers) : \Maleficarum\Proxy\Bootstrap {
+    public function setInitializers(array $initializers): \Maleficarum\Proxy\Bootstrap {
         $this->initializers = $initializers;
+
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getParamContainer() {
+    public function getParamContainer(): array {
         return $this->paramContainer;
     }
 
     /**
      * @param array $paramContainer
+     *
      * @return \Maleficarum\Proxy\Bootstrap
      */
-    public function setParamContainer(array $paramContainer = []) : \Maleficarum\Proxy\Bootstrap {
+    public function setParamContainer(array $paramContainer = []): \Maleficarum\Proxy\Bootstrap {
         $this->paramContainer = $paramContainer;
+
         return $this;
     }
 

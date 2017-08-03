@@ -4,15 +4,16 @@
  *
  * @extends \Maleficarum\Proxy\Controller\Generic
  */
+declare(strict_types=1);
 
 namespace Maleficarum\Proxy\Controller;
 
-class Fallback extends \Maleficarum\Proxy\Controller\Generic
-{
+class Fallback extends \Maleficarum\Proxy\Controller\Generic {
     /**
      * Throws not found exception
-     * 
+     *
      * @see \Maleficarum\Proxy\Controller\Generic::__remap()
+     *
      * @param string $method
      *
      * @return void

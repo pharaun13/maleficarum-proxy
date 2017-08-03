@@ -2,16 +2,15 @@
     "name": "maleficarum/proxy",
     "description": "Proxy component",
     "require": {
-        "php": ">=7.0",
+        "php": "^7.1",
         "ext-mbstring": "*",
-        "ext-phalcon": ">=3.0",
+        "ext-phalcon": "^3.2",
         "maleficarum/ioc": "^2.0",
-        "maleficarum/environment": "^3.0",
-        "maleficarum/config": "^3.0",
-        "maleficarum/request": "^3.0",
+        "maleficarum/environment": "^4.0",
+        "maleficarum/config": "^4.0",
+        "maleficarum/request": "^4.0",
         "maleficarum/http-response": "^4.0",
-        "maleficarum/handler": "^3.1",
-        "twig/twig": "^2.4"
+        "maleficarum/handler": "^3.1"
     },
     "autoload": {
         "psr-4": {
