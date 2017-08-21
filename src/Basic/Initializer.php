@@ -14,14 +14,17 @@ class Initializer {
      * @return string
      */
     static public function setUpErrorHandling(): string {
-        /** @var \Maleficarum\Handler\Http\Strategy\HtmlStrategy $strategy */
-        $strategy = \Maleficarum\Ioc\Container::get('Maleficarum\Handler\Http\Strategy\HtmlStrategy');
+        $handler = function (\Throwable $throwable) {
+            /** @var \Maleficarum\Handler\Http\Strategy\HtmlStrategy $strategy */
+            $strategy = \Maleficarum\Ioc\Container::get('Maleficarum\Handler\Http\Strategy\HtmlStrategy');
 
-        /** @var \Maleficarum\Handler\Http\ExceptionHandler $handler */
-        $handler = \Maleficarum\Ioc\Container::get('Maleficarum\Handler\Http\ExceptionHandler', [$strategy]);
+            /** @var \Maleficarum\Handler\Http\ExceptionHandler $handler */
+            $handler = \Maleficarum\Ioc\Container::get('Maleficarum\Handler\Http\ExceptionHandler', [$strategy]);
+            $handler->handle($throwable);
+        };
 
-        \set_exception_handler([$handler, 'handle']);
-        \set_error_handler([\Maleficarum\Ioc\Container::get('Maleficarum\Handler\ErrorHandler'), 'handle']);
+        set_exception_handler($handler);
+        set_error_handler([\Maleficarum\Ioc\Container::get('Maleficarum\Handler\ErrorHandler'), 'handle']);
 
         // return initializer name
         return __METHOD__;
