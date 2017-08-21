@@ -1,6 +1,10 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
+## [2.0.1] - 2017-08-21
+### Fixed
+- Create new exception handler instance only when exception occurs
+
 ## [2.0.0] - 2017-07-28
 ### Changed
 - Bump all maleficarum components

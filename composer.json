@@ -10,7 +10,7 @@
         "maleficarum/config": "^4.0",
         "maleficarum/request": "^4.0",
         "maleficarum/http-response": "^4.0",
-        "maleficarum/handler": "^3.1"
+        "maleficarum/handler": "^3.2"
     },
     "autoload": {
         "psr-4": {
