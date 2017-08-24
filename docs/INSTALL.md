@@ -12,15 +12,15 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
 ## Installation
 1. Create project directory structure
     ```shell
-    mkdir -p /var/www/project/config/{local,development,staging,uat,production}
-    mkdir -p /var/www/project/src/Route
-    mkdir -p /var/www/project/src/Controller/Status
-    mkdir -p /var/www/project/public
-    mkdir -p /var/www/project/templates/exceptions
-    mkdir -p /var/www/project/cache/templates
+    mkdir -p /var/www/project/proxy/config/{local,development,staging,uat,production}
+    mkdir -p /var/www/project/proxy/src/Route
+    mkdir -p /var/www/project/proxy/src/Controller/Status
+    mkdir -p /var/www/project/proxy/public
+    mkdir -p /var/www/project/proxy/templates/exceptions
+    mkdir -p /var/www/project/proxy/cache/templates
     ```
 
-2. Create `.gitignore` file `/var/www/project/.gitignore` and add the following content
+2. Create `.gitignore` file `/var/www/project/proxy/.gitignore` and add the following content
     ```
     /vendor/
     /config/local/
@@ -29,12 +29,12 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
     .idea
     ```
 
-3. Put `.gitkeep` file to `/var/www/project/cache/templates` directory
+3. Put `.gitkeep` file to `/var/www/project/proxy/cache/templates` directory
     ```shell
-    touch /var/www/project/cache/templates/.gitkeep
+    touch /var/www/project/proxy/cache/templates/.gitkeep
     ```
 
-4. Create exception template file `/var/www/project/templates/exceptions/generic.html` and add the following content
+4. Create exception template file `/var/www/project/proxy/templates/exceptions/generic.html` and add the following content
     ```twig
     <!DOCTYPE html>
     <html lang="en">
@@ -54,7 +54,7 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
     </html>
     ```
 
-5. Create config file template `/var/www/project/config/__example-config.ini` and add the following content
+5. Create config file template `/var/www/project/proxy/config/__example-config.ini` and add the following content
     ```ini
     ;##
     ;#   GLOBAL application settings
@@ -65,20 +65,20 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
     enabled = true
     
     [templates]
-    directory = '/var/www/project/templates'
-    cache_directory = '/var/www/project/cache/templates'
+    directory = '/var/www/project/proxy/templates'
+    cache_directory = '/var/www/project/proxy/cache/templates'
     ```
 
 6. Create config file for each environment:
     ```shell
-    cp /var/www/project/config/__example-config.ini /var/www/project/config/local/config.ini
-    cp /var/www/project/config/__example-config.ini /var/www/project/config/development/config.ini
-    cp /var/www/project/config/__example-config.ini /var/www/project/config/staging/config.ini
-    cp /var/www/project/config/__example-config.ini /var/www/project/config/uat/config.ini
-    cp /var/www/project/config/__example-config.ini /var/www/project/config/production/config.ini
+    cp /var/www/project/proxy/config/__example-config.ini /var/www/project/proxy/config/local/config.ini
+    cp /var/www/project/proxy/config/__example-config.ini /var/www/project/proxy/config/development/config.ini
+    cp /var/www/project/proxy/config/__example-config.ini /var/www/project/proxy/config/staging/config.ini
+    cp /var/www/project/proxy/config/__example-config.ini /var/www/project/proxy/config/uat/config.ini
+    cp /var/www/project/proxy/config/__example-config.ini /var/www/project/proxy/config/production/config.ini
     ```
 
-7. Create composer file `/var/www/project/composer.json` and add the following content
+7. Create composer file `/var/www/project/proxy/composer.json` and add the following content
     ```json
     {
         "name": "service_name-proxy",
@@ -90,9 +90,6 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
             }
         },
         "require": {
-            "maleficarum/proxy": "^2.0",
-            "maleficarum/profiler": "^4.0",
-            "maleficarum/logger": "^2.0"
         },
         "repositories": [
             {
@@ -143,13 +140,23 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
     }
     ```
 
-8. Install dependencies by running composer
-    ```shell
-    cd /var/www/project/
-    composer install
+    **Please remember to update project name and description like in the example listed below**
+    ```json
+    {
+       "name": "campaign_service-proxy",
+       "description": "Campaign service - Proxy",
+    }
     ```
 
-9. Create status controller file `/var/www/project/src/Controller/Status/Controller.php` and add the following content
+8. Install dependencies by running composer
+    ```shell
+    cd /var/www/project/proxy/
+    composer require maleficarum/proxy
+    composer require maleficarum/profiler
+    composer require maleficarum/logger
+    ```
+
+9. Create status controller file `/var/www/project/proxy/src/Controller/Status/Controller.php` and add the following content
     ```php
     <?php
     declare(strict_types=1);
@@ -177,7 +184,15 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
     }
     ```
 
-10. Create status route file `/var/www/project/src/Route/Status.php` and add the following content
+    **Please remember to update service name like in the example listed below**
+    ```php
+    return $this->getResponse()->render([
+        'name' => 'campaign-service-proxy',
+        'status' => 'OK'
+    ]);
+    ```
+
+10. Create status route file `/var/www/project/proxy/src/Route/Status.php` and add the following content
     ```php
     <?php
     /**
@@ -191,7 +206,7 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
     })->via(['GET']);
     ```
 
-11. Create front controller file `/var/www/project/public/index.php` and add the following content
+11. Create front controller file `/var/www/project/proxy/public/index.php` and add the following content
     ```php
     <?php
     declare (strict_types=1);
@@ -244,4 +259,16 @@ Please remember to replace `/var/www/project` with the proper project path e.g. 
     
     // conclude application run
     $bootstrap->conclude();
+    ```
+
+    **Please remember to update log prefix like in the example listed below**
+    ```php
+    // ...
+    $bootstrap = \Maleficarum\Ioc\Container::get('Maleficarum\Proxy\Bootstrap')
+        ->setParamContainer([
+            // ...
+            'prefix' => 'service_name-Proxy',
+            // ...
+        ])
+    // ...
     ```
