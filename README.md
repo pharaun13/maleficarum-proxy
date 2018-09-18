@@ -3,7 +3,7 @@ This is the Maleficarum Proxy component implementation.
 
 ## [3.0.0] - 2018-09-17
 ### Fixed
-- Adjustment code to Maleficarum/IOC v 4.0
+- Adjustment code to Maleficarum/IOC v 3.0
 
 ## [2.0.1] - 2017-08-21
 ### Fixed
