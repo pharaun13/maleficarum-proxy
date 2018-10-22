@@ -6,11 +6,11 @@
         "ext-mbstring": "*",
         "ext-phalcon": "^3.2",
         "maleficarum/ioc": "^3.0",
-        "maleficarum/environment": "^4.0",
-        "maleficarum/config": "^4.0",
-        "maleficarum/request": "^4.0",
-        "maleficarum/http-response": "^4.0",
-        "maleficarum/handler": "^3.2"
+        "maleficarum/environment": "^5.0",
+        "maleficarum/config": "^5.0",
+        "maleficarum/request": "^5.0",
+        "maleficarum/http-response": "^5.0",
+        "maleficarum/handler": "^4.0"
     },
     "autoload": {
         "psr-4": {
