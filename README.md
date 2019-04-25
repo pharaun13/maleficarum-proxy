@@ -1,6 +1,10 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
+## [3.0.1] - 2019-04-25
+### Fixed
+- Added sandbox environment
+
 ## [3.0.0] - 2018-09-17
 ### Fixed
 - Adjustment code to Maleficarum/IOC v 3.0
