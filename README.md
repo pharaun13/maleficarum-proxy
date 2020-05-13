@@ -1,6 +1,12 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
+## [4.0.0] - 2020-05-13
+### Changed
+- Updated to depend on and work with Phalcon 4.0.X
+- Updated to depend on and work with Maleficarum\Response 6.0.X
+- Updated to depend on and work with Maleficarum\Request 6.0.X
+
 ## [3.0.1] - 2019-04-25
 ### Fixed
 - Added sandbox environment
