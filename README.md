@@ -1,7 +1,7 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
-## [3.0.2] - 2019-04-25
+## [3.0.2] - 2020-11-17
 ### Fixed
 - Add support for multiple UAT environments
 
