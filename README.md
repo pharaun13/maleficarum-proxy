@@ -1,6 +1,10 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
+## [4.1.0] - 2021-02-25
+### Added
+- Allow uat* environment
+
 ## [4.0.0] - 2020-05-13
 ### Changed
 - Updated to depend on and work with Phalcon 4.0.X
