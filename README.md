@@ -1,6 +1,10 @@
 # Change Log
 This is the Maleficarum Proxy component implementation. 
 
+## [5.0.0] - 2025-07-09
+### Added
+- Improvie environment matching
+
 ## [4.1.0] - 2021-02-25
 ### Added
 - Allow uat* environment
